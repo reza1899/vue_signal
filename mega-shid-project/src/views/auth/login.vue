@@ -1,24 +1,22 @@
 <template>
-    <div class="m-0 p-0">
-<!--        <div class="container-fluid border border-3 text-center p-3 row m-0" style="background-color: #e3f2fd;color: #2c3e50; ">-->
+    <div>
             <div class="split right">
-                <div>
-                    <div class="border-base position-absolute top-50 start-50 translate-middle  p-3 m-auto w-50" >
-                        <form>
-                            <div class="mb-3">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    aria-describedby="emailHelp"
-                                    placeholder="نام کاربری"
-                                />
-                            </div>
-                            <div class="mb-3">
-                                <input  type="password" class="form-control" placeholder="رمز عبور"/>
-                            </div>
-                            <div class="d-flex mt-4 justify-content-between">
+                <div class="">
+                    <div class="border-base position-absolute top-50 start-50 translate-middle p-3 m-auto w-50" >
+                        <form class="border">
+                                <h6 class="text-end mt-2">password</h6>
+                                <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
 
-                                <button  type="submit" class="btn w-25">ثبت</button>
+
+
+                                <h6 class="text-end mt-2">password</h6>
+                                <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+
+
+                                <a class="text-end d-block " href="register.vue">هنوزثبت نام نکرده اید؟</a>
+
+                            <div class="d-flex mt-4 justify-content-between">
+                                <button  type="submit" class="btn">ثبت</button>
                             </div>
                         </form>
                     </div>
@@ -29,7 +27,6 @@
             </div>
 
         </div>
-<!--    </div>-->
 </template>
 
 <script>
