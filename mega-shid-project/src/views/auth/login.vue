@@ -16,7 +16,7 @@
                                 <a class="text-end d-block " href="/register">هنوزثبت نام نکرده اید؟</a>
 
                             <div class="d-flex mt-4 justify-content-between">
-                                <button @click="login" type="submit" class="btn">ثبت</button>
+                                <button :disabled="!userInfo.userName || !userInfo.password" @click="login" type="submit" class="btn">ثبت</button>
                             </div>
                         </form>
                     </div>
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+
 export default {
     name: 'LoginView',
     data() {
@@ -41,9 +42,9 @@ export default {
         }
     },
   methods: {
-    login(event) {
+     login(event) {
         event.preventDefault();
-      // this.axios.post('' ,this.userInfo).then((response) => {
+      //await this.axios.post('' ,this.userInfo).then((response) => {
       //   console.log(response)
       //     alert('ورود با موفقیت انجام شد')
       //     this.$router.push('/')
@@ -52,8 +53,9 @@ export default {
       //     alert('ورود با مشکل مواجه شد')
       // })
       //   this.$router.push('/')
+         this.$store.state.is_logged_in = true
         console.log(this.userInfo)
-        this.$router.push('/')
+        this.$router.push('/profile')
     }
   }
 };

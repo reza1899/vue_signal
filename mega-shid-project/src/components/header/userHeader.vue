@@ -1,6 +1,6 @@
 <template>
     <div>
-        <nav class="navbar navbar-light m-4 rounded-3" style="background-color: #e3f2fd;">
+        <nav class="navbar navbar-light m-4 rounded-3 " style="background-color: #e3f2fd;">
             <div class="container-fluid row m-0 d-flex flex-row">
                 <div class="col-5  text-end">
                     <a class="navbar-brand" href="#">
@@ -8,8 +8,8 @@
                     </a>
                 </div>
                 <div class="col-4 text-start ms-2">
-                    <button class="btn ms-2" @click="handleClick">ورود</button>
-                    <button class="btn" @click="handleClick2">ثبت نام</button>
+                    <b> {{ full_name }}   :  نام کاربری</b>
+                    <i class="fas fa-user-alt me-2"></i>
                 </div>
             </div>
         </nav>
@@ -17,16 +17,13 @@
 </template>
 
 <script>
-
 export default {
-    name: 'HeaderApp',
-    methods: {
-      handleClick() {
-        this.$router.push('/login')
-      },
-        handleClick2() {
-            this.$router.push('/register')
-        }
+    name: 'panelHeader',
+    computed: {
+        full_name() {
+            return this.$store.state.user_data.full_name
+        },
+
     }
 }
 </script>
@@ -36,7 +33,7 @@ button {
     color: #2c3e50;
 }
 button:hover {
-  background-color: #9AC5F4;
+    background-color: #9AC5F4;
 }
 img {
     width: 200px;

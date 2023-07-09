@@ -6,20 +6,29 @@
                     <form>
                         <p class="text-end mt-2">Email</p>
                         <input type="text" v-model="userInfo.email" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
-                        <p class="text-danger text-end fw-bold" v-if="errors.email">{{ errors.email }}</p>
+                        <div v-if="errors.email" class="alert alert-danger fs-6 p-0 mt-2 w-50" role="alert">
+                            {{ errors.email }} <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+
+
                         <p class="text-end mt-2">Company Name</p>
                         <input type="text" v-model="userInfo.companyName" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
                         <p class="text-danger text-end fw-bold" v-if="errors.companyName">{{ errors.companyName }}</p>
+                        <div v-if="errors.companyName" class="alert alert-danger fs-6 p-0 mt-2 w-75" role="alert">
+                            {{ errors.companyName }} <i class="fas fa-exclamation-triangle"></i>
+                        </div>
 
                         <p class="text-end mt-2">نام سازمان</p>
                         <input type="text" v-model="userInfo.companyNameFa" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
-                        <p class="text-danger text-end fw-bold" v-if="errors.companyNameFa">{{ errors.companyNameFa }}</p>
+                        <div v-if="errors.companyNameFa" class="alert alert-danger fs-6 p-0 mt-2 w-75" role="alert">
+                            {{ errors.companyNameFa }} <i class="fas fa-exclamation-triangle"></i>
+                        </div>
 
 
                         <a class="text-end d-block " href="/login">حساب کاربری دارید؟</a>
 
                         <div class="d-flex mt-4 justify-content-between">
-                            <button @click="register"  type="submit" class="btn">ثبت</button>
+                            <button :disabled="!userInfo.email || !userInfo.companyName || !userInfo.companyNameFa" @click="register"  type="submit" class="btn">ثبت</button>
                         </div>
                     </form>
                 </div>
@@ -55,7 +64,7 @@ export default {
       }
     },
     methods: {
-                register(event) {
+       async register(event) {
             // prevent the form from submitting by default
             event.preventDefault();
 
@@ -113,7 +122,7 @@ export default {
             // submit form
             console.log(this.userInfo);
         //     API section
-        //             this.axios.post("", this.userInfo).then(response => {
+        //           await this.axios.post("", this.userInfo).then(response => {
         //                 console.log(response)
         //                 alert("ثبت نام با موفقیت انجام شد")
         //             }).catch((error) => {
