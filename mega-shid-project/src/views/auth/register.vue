@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="split left">
-            <img style="border-radius: 5px;box-shadow: #2c3e50 0px 0px 15px;" class="w-100 h-100"  src="../../assets/wave4.jpg" alt="sea">
+            <img style="border-radius: 5px;box-shadow: #2c3e50 0px 0px 15px;" class="w-100 h-100"  src="https://trello.com/1/cards/64aaff8a088d42ad0ae28a9a/attachments/64aaff8a088d42ad0ae28abc/previews/64aaff8a088d42ad0ae28ae5/download/signup.jpeg.jpg" alt="sea">
         </div>
 
     </div>
