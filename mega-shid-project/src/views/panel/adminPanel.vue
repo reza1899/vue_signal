@@ -1,6 +1,6 @@
 <template>
   <div>
-
+      this is admin panel
   </div>
 </template>
 <script>

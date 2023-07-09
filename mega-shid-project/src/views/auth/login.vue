@@ -55,9 +55,14 @@ export default {
       //   this.$router.push('/')
          this.$store.state.is_logged_in = true
         console.log(this.userInfo)
-        this.$router.push('/profile')
+        if (this.$store.state.role === 'user') {
+            this.$router.push('/profile')
+        } else if (this.$store.state.role === 'admin') {
+            this.$router.push('/adminpanel')
+        }
+
+        }
     }
-  }
 };
 </script>
 <style scoped>

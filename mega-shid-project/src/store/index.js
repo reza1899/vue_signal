@@ -6,17 +6,17 @@ export default createStore({
     user_data: {
       full_name: 'reza',
     },
-    // role: ''
+    role: 'admin'
 
   },
   getters: {
   },
   mutations: {
   //   login
-    login(state) {
+    login(state,role,user_data) {
       state.is_logged_in = true
-      // state.user_data = user_data
-      // state.role = role
+      state.user_data = user_data
+      state.role = role
     },
   //   logout
     logout(state) {
