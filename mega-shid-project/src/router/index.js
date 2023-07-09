@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import LoginView from '../views/auth/login.vue'
 import RegisterView from '../views/auth/register.vue'
+import userPanel from "@/views/panel/userPanel.vue";
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/register',
     name: 'register',
     component: RegisterView
+  },
+  {
+    path: '/userPanel',
+    name: 'userPanel',
+    component: userPanel
   }
 ]
 

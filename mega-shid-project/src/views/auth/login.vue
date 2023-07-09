@@ -1,22 +1,22 @@
 <template>
     <div>
             <div class="split right">
-                <div class="">
-                    <div class="border-base position-absolute top-50 start-50 translate-middle p-3 m-auto w-50" >
-                        <form class="border">
-                                <h6 class="text-end mt-2">password</h6>
-                                <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                <div>
+                    <div class="border-base position-absolute top-50 start-50 translate-middle p-3  w-50" >
+                        <form>
+                                <p class="text-end mt-2">User Name</p>
+                                <input  v-model="userInfo.userName" type="text" class="form-control" aria-describedby="passwordHelpBlock">
 
 
 
-                                <h6 class="text-end mt-2">password</h6>
-                                <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                                <p class="text-end mt-2">Password</p>
+                                <input  v-model="userInfo.password" type="password" class="form-control" aria-describedby="passwordHelpBlock">
 
 
-                                <a class="text-end d-block " href="register.vue">هنوزثبت نام نکرده اید؟</a>
+                                <a class="text-end d-block " href="/register">هنوزثبت نام نکرده اید؟</a>
 
                             <div class="d-flex mt-4 justify-content-between">
-                                <button  type="submit" class="btn">ثبت</button>
+                                <button @click="login" type="submit" class="btn">ثبت</button>
                             </div>
                         </form>
                     </div>
@@ -32,7 +32,30 @@
 <script>
 export default {
     name: 'LoginView',
-
+    data() {
+        return {
+            userInfo: {
+                userName: '',
+                password: '',
+            }
+        }
+    },
+  methods: {
+    login(event) {
+        event.preventDefault();
+      // this.axios.post('' ,this.userInfo).then((response) => {
+      //   console.log(response)
+      //     alert('ورود با موفقیت انجام شد')
+      //     this.$router.push('/')
+      // }).catch((error) => {
+      //   console.log(error)
+      //     alert('ورود با مشکل مواجه شد')
+      // })
+      //   this.$router.push('/')
+        console.log(this.userInfo)
+        this.$router.push('/')
+    }
+  }
 };
 </script>
 <style scoped>
