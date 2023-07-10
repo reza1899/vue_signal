@@ -6,7 +6,7 @@ export default createStore({
     user_data: {
       full_name: 'reza',
     },
-    role: 'admin'
+    role: 'user'
 
   },
   getters: {

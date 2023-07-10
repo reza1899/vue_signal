@@ -56,7 +56,7 @@ export default {
          this.$store.state.is_logged_in = true
         console.log(this.userInfo)
         if (this.$store.state.role === 'user') {
-            this.$router.push('/profile')
+            this.$router.push('/dashboard')
         } else if (this.$store.state.role === 'admin') {
             this.$router.push('/adminpanel')
         }

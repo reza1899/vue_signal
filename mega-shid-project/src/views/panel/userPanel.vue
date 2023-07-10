@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import PanelHeader from "@/components/header/userHeader.vue";
+import PanelHeader from "@/components/panel/header";
 export default {
   name: 'UserPanel',
     components: {

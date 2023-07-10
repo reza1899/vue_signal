@@ -6,7 +6,7 @@ import LoginView from '../views/auth/login.vue'
 import RegisterView from '../views/auth/register.vue'
 import userPanel from "@/views/panel/userPanel.vue";
 import adminPanel from "@/views/panel/adminPanel.vue";
-
+import userDashboard from "@/views/panel/userDashboard.vue";
 // Import the store module
 import store from '../store'
 
@@ -35,7 +35,13 @@ const routes = [
     path: '/profile',
     name: 'userPanel',
     component: userPanel,
-    meta: { needsAuth: true }
+    meta: { needsAuth: false }
+  },
+  {
+    path: '/dashboard',
+    name: 'userDashboard',
+    component: userDashboard,
+    meta: { needsAuth: false }
   },
   {
     path: '/adminpanel',
