@@ -5,6 +5,10 @@ export default createStore({
     is_logged_in: false,
     user_data: {
       full_name: 'reza',
+      username: 'reza1899',
+      email: 'example@gmail.com',
+      companyName : "megashid",
+      companyNameFa: "مگاشید"
     },
     role: 'user'
 

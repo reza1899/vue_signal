@@ -2,15 +2,15 @@
     <div>
         <nav class="navbar navbar-light m-4 rounded-3 " style="background-color: #e3f2fd;">
             <div class="container-fluid row m-0 d-flex flex-row">
-                <div class="col-4 col-md-2 p-0 border">
+                <div class="col-4 col-md-2 p-0 ">
                     <panelMenu/>
                 </div>
-                <div class="col-4 col-md-5 border text-end">
+                <div class="col-4 col-md-5  text-end">
                     <a class="navbar-brand" href="#">
                         <img class="img-fluid" src="https://trello.com/1/cards/64a9974db79f1ef23ec2dd61/attachments/64a9974db79f1ef23ec2dd82/previews/64a9974eb79f1ef23ec2ddd9/download/mega.jpeg.png" alt="mega">
                     </a>
                 </div>
-                <div class="col-4 col-md-4 border text-start ">
+                <div class="col-4 col-md-4  text-start ">
                     <b> {{ full_name }}   :  نام کاربری</b>
                     <i class="fas fa-user-alt me-2"></i>
                 </div>
