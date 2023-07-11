@@ -1,22 +1,24 @@
 <template>
   <div>
-    <PanelHeader/>
-      <div class="container-fluid">
-          <div>
-              <waveForm :value="82"/>
+      <panelLayout>
+
+          <div class="container-fluid">
+              <div>
+                  <waveForm :value="82"/>
+              </div>
           </div>
-      </div>
+      </panelLayout>
   </div>
 </template>
 
 <script>
-import PanelHeader from "@/components/panel/header";
 import waveForm from '@/components/panel/waveform/newWave.vue'
+import  panelLayout from '@/layout/userPanel.vue'
 export default {
     name : "userDashboard",
     components:{
-        PanelHeader,
-        waveForm
+        waveForm,
+        panelLayout
 
     }
 }

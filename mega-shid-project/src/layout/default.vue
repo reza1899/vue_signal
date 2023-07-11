@@ -1,10 +1,14 @@
 <template>
-  <div class="about">
+  <div>
+
   </div>
 </template>
+
 <script>
 export default {
-  name: 'AboutView',
+    name: "defaultLayout"
 }
 </script>
-<style></style>
+<style>
+
+</style>

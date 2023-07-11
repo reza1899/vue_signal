@@ -4,7 +4,7 @@
             <div class="col-12 col-md-5 p-0">
                 <analogGauge :value="waveSpecifications.frequency"/>
                 <p class="d-inline ms-">frequency:</p>
-                <input type="range" style="width: 100px; "  id="customRange1" v-model="waveSpecifications.frequency">
+                <input type="range" style="width: 100px;"  id="customRange1" v-model="waveSpecifications.frequency">
                 <div class="gauge">
                     <div class="gauge__value">{{ waveSpecifications.frequency }}</div>
                 </div>
@@ -31,23 +31,33 @@
                 </div>
             </div>
         </div>
+        <chartApp :frequencyArr="waveSpecifications.frequencyArr"/>
     </div>
 </template>
 <script>
+import chartApp from "@/components/panel/waveform/chart.vue";
 import analogGauge from "@/components/panel/waveform/analogGauge.vue";
 export default {
     name:"waveForm",
     components:{
-        analogGauge
+        analogGauge,
+        chartApp
     },
     data(){
         return{
             waveSpecifications:{
                 frequency:0,
+                frequencyArr:  [],
                 domain:0,
                 waveType:null
 
             }
+        }
+    },
+    watch: {
+        'waveSpecifications.frequency'(newFrequency) {
+            this.waveSpecifications.frequencyArr = Array.from({length: newFrequency - 1}, (_, i) => i);
+            console.log(this.waveSpecifications.frequencyArr)
         }
     }
 }

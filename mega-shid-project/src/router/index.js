@@ -1,12 +1,12 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import AboutView from '../views/AboutView.vue'
 import LoginView from '../views/auth/login.vue'
 import RegisterView from '../views/auth/register.vue'
 import userPanel from "@/views/panel/userPanel.vue";
 import adminPanel from "@/views/panel/adminPanel.vue";
 import userDashboard from "@/views/panel/userDashboard.vue";
+import adminAdd from "@/views/panel/adminAdd.vue";
 // Import the store module
 import store from '../store'
 
@@ -16,12 +16,7 @@ const routes = [
     name: 'home',
     component: HomeView
   },
-  {
-    path: '/about',
-    name: 'about',
-    components: AboutView
-  },
-  {
+    {
     path: '/login',
     name: 'login',
     component: LoginView
@@ -44,10 +39,16 @@ const routes = [
     meta: { needsAuth: false }
   },
   {
-    path: '/adminpanel',
+    path: '/admin',
     name: 'adminPanel',
     component: adminPanel,
-    meta: { needsAuth: true }
+    meta: { needsAuth: false }
+  },
+  {
+    path: '/add',
+    name: 'adminAdd',
+    component: adminAdd,
+    meta: { needsAuth: false }
   }
 ]
 

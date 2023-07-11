@@ -1,35 +1,35 @@
 <template>
   <div>
-    <PanelHeader />
-      <table>
-          <thead>
-          <tr>
-              <th>Username</th>
-              <th>Email</th>
-              <th>company name</th>
-              <th>نام سازمان</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-              <td>{{this.$store.state.user_data.username}}</td>
-              <td>{{this.$store.state.user_data.email}}</td>
-              <td>{{this.$store.state.user_data.companyName}}</td>
-              <td>{{this.$store.state.user_data.companyNameFa}}</td>
-          </tr>
+      <panelLayout>
+          <table>
+              <thead>
+              <tr>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>company name</th>
+                  <th>نام سازمان</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                  <td>{{this.$store.state.user_data.username}}</td>
+                  <td>{{this.$store.state.user_data.email}}</td>
+                  <td>{{this.$store.state.user_data.companyName}}</td>
+                  <td>{{this.$store.state.user_data.companyNameFa}}</td>
+              </tr>
 
-          </tbody>
-      </table>
+              </tbody>
+          </table>
+      </panelLayout>
   </div>
 </template>
 
 <script>
-import PanelHeader from "@/components/panel/header";
+import panelLayout from '@/layout/userPanel.vue'
 export default {
   name: 'UserPanel',
     components: {
-        PanelHeader,
-
+      panelLayout
     }
 }
 </script>
