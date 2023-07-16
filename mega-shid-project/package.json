@@ -11,8 +11,11 @@
     "axios": "^1.4.0",
     "chart.js": "^3.7.1",
     "core-js": "^3.8.3",
+    "plotly.js-dist": "^2.24.3",
+    "primevue": "^3.30.1",
     "vue": "^3.2.13",
     "vue-canvas-gauges": "^0.0.0",
+    "vue-knob-control": "^1.7.0",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
   },

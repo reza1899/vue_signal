@@ -1,59 +1,54 @@
 <template>
     <div>
-        <canvas id="myChart" width="400" height="400"></canvas>
+        <div ref="plot"></div>
+        <input v-model="range" type="range" min="40" max="80" step="1" />
+        <input v-model="rangeb" type="range" min="40" max="80" step="1" />
     </div>
 </template>
 
 <script>
-import Chart from 'chart.js/auto';
+import Plotly from 'plotly.js-dist';
 
 export default {
-    name:"chartApp",
+    name: 'chartApp',
     data() {
         return {
-            myChart: null,
-            dadash: 30,
-            reza: [20,25,26,24],
-        }
+            arr:[],
+            arrt:[],
+            range: 1,
+            rangeb: 1,
+            plotData: [
+                {
+                    x: [],
+                    y: [],
+                }
+            ],
+            plotLayout: {
+                margin: { t: 0 }
+            }
+        };
     },
 
     mounted() {
-        const ctx = document.getElementById('myChart');
-        const domain = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
-        const data = {
-            labels: domain,
-            datasets: [{
-                label: 'My First Dataset',
-                data: this.reza,
-                fill: true,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 1
-            }]
-        };
-        this.myChart = new Chart(ctx, {
-            type: 'line',
-            data: data,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false
-            }
-        });
+        Plotly.newPlot(this.$refs.plot, this.plotData, this.plotLayout);
+    },
 
-    },
-    props: {
-        frequencyArr:Array,
-    },
-    computed: {
-        waveSpecifications() {
-            return {
-                frequency: this.frequency,
-                domain: this.domain,
-                waveType: this.waveType
-            }
+    watch: {
+        range(newRange) {
+            this.plotData[0].x=this.arr
+            // console.log(newRange);
+            this.arr.push(newRange)
+            console.log("arr1",this.arr)
+        },
+        rangeb(newRangeb) {
+            this.plotData[0].y = this.arrt
+            Plotly.update(this.$refs.plot, this.plotData, this.plotLayout);
+            this.arrt.push(newRangeb)
+            console.log("arr2",this.arrt)
         }
-    },
     }
+};
 </script>
-<style>
 
+<style>
 </style>

@@ -39,7 +39,7 @@ export default {
         addUser() {
            // await this.axios.post("", this.newUser).then(response => {
            //                     console.log(response)
-            //                    alert("ایجاد کاربر با موفقیت انجام شد")
+           //                     alert("ایجاد کاربر با موفقیت انجام شد")
            //                 }).catch((error) => {
            //                     console.log(error);
            //                     alert("ثبت نام با مشکل مواجه شد")

@@ -58,7 +58,7 @@ export default {
         if (this.$store.state.role === 'user') {
             this.$router.push('/dashboard')
         } else if (this.$store.state.role === 'admin') {
-            this.$router.push('/adminpanel')
+            this.$router.push('/admin')
         }
 
         }
