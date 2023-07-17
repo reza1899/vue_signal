@@ -2,23 +2,19 @@
     <div>
         <div  class="d1  border row m-0">
             <div class="col-12 col-md-5 p-0">
-                <analogGauge :value="waveSpecifications.frequency"/>
+                <analogGauge :value="frequency"/>
                 <p class="d-inline ms-">frequency:</p>
 <!--                <input type="range" style="width: 100px;"  id="customRange1" v-model="waveSpecifications.frequency">-->
-                    <knob v-model="waveSpecifications.frequency" value-color="#3b5998"/>
-                <div class="gauge">
-                    <div class="gauge__value">{{ waveSpecifications.frequency }}</div>
-                </div>
+                    <knob v-model="this.frequency" value-color="#3b5998"/>
+
             </div>
             <div class="col-12  col-md-5 p-0">
-                <analogGauge :value="waveSpecifications.domain"/>
+                <analogGauge :value="domain"/>
                 <p class="d-inline ms-">domain:</p>
 <!--                <input type="range" style="width: 100px"  id="customRange1" v-model="waveSpecifications.domain">-->
-                <knob v-model="waveSpecifications.domain" value-color="#3b5998"/>
+                <knob v-model="this.domain" value-color="#3b5998"/>
 
-                <div class="gauge">
-                    <div class="gauge__value">{{ waveSpecifications.domain }}</div>
-                </div>
+
             </div>
             <div class="col-12 col-md-2 p-0 ">
                 <div style="margin: 20%">
@@ -36,18 +32,19 @@
                 </div>
             </div>
         </div>
-        <chartApp :frequencyArr="waveSpecifications.frequencyArr" :domain="waveSpecifications.domainArr"/>
+<!--        <chartApp :frequencyArr="waveSpecifications.frequencyArr" :domain="waveSpecifications.domainArr"/>-->
+        <div ref="plot"></div>
+
     </div>
 </template>
 <script>
-import chartApp from "@/components/panel/waveform/chart.vue";
+import Plotly from 'plotly.js-dist';
 import analogGauge from "@/components/panel/waveform/analogGauge.vue";
 import knob  from 'primevue/knob';
 export default {
     name:"waveForm",
     components:{
         analogGauge,
-        chartApp,
         knob,
 
 
@@ -55,39 +52,42 @@ export default {
 
     data(){
         return{
+            frequency:0,
+            domain:0,
+            frequencyArr:  [],
+            domainArr:[],
+            plotData: [
+                {
+                    x: [],
+                    y: [],
+                },
+            ],
+            plotLayout: {
+                margin: { t: 0 },
+            },
             waveSpecifications:{
-                frequency:0,
-                domain:0,
-                frequencyArr:  [],
-                domainArr:[],
                 waveType:null
 
             },
         }
     },
     mounted() {
-        // Generate the frequency and domain arrays
-        this.generateArrays();
+        Plotly.newPlot(this.$refs.plot, this.plotData, this.plotLayout);
     },
-    methods: {
-        generateArrays() {
-            // Generate the frequency array
-            this.frequencyArr = Array.from({ length: this.frequency }, (_, i) => i + 1);
 
-            // Generate the domain array
-            this.domainArr = Array.from({ length: this.domain }, (_, i) => i + 1);
-        }
-    },
     watch: {
-        frequency() {
-            // Regenerate the arrays when the frequency or domain value changes
-            this.generateArrays();
+        domain(newDomain) {
+            this.domainArr.push(newDomain);
+            this.plotData[0].x = this.domainArr; // Update the x values of the first trace
+            Plotly.update(this.$refs.plot, this.plotData, this.plotLayout);
         },
-        domain() {
-            // Regenerate the arrays when the frequency or domain value changes
-            this.generateArrays();
-        }
-    }
+        frequency(newFrequency) {
+            this.frequencyArr.push(newFrequency)
+            this.plotData[0].y = this.frequencyArr; // Update the y values of the first trace
+            Plotly.update(this.$refs.plot, this.plotData, this.plotLayout);
+        },
+    },
+
 }
 </script>
 
