@@ -79,7 +79,7 @@ export default {
             const startAngle = -Math.PI * 0.8;
             const endAngle = -startAngle;
             const range = this.max - this.min;
-            const step = range / (this.max/20); // Change this to control how many numbers are displayed
+            const step = range / (this.max/1); // Change this to control how many numbers are displayed
             const radius = 35; // Change this to control the distance of the numbers from the center
             const numbers = [];
             for (let i = this.min; i <= this.max; i += step) {

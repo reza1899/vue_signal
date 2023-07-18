@@ -2,17 +2,17 @@
     <div>
         <div  class="d1  border row m-0">
             <div class="col-12 col-md-5 p-0">
-                <analogGauge :value="frequency"/>
+                <analogGauge :value="frequency" :max="1" :min="0" :step="0.01"/>
                 <p class="d-inline ms-">frequency:</p>
 <!--                <input type="range" style="width: 100px;"  id="customRange1" v-model="waveSpecifications.frequency">-->
-                    <knob v-model="this.frequency" value-color="#3b5998"/>
+                    <knob v-model="this.frequency" :max="1" :min="0" :step="0.01" value-color="#3b5998"/>
 
             </div>
             <div class="col-12  col-md-5 p-0">
-                <analogGauge :value="domain"/>
+                <analogGauge :value="domain" :max="10" :min="0" :step="0.1"/>
                 <p class="d-inline ms-">domain:</p>
 <!--                <input type="range" style="width: 100px"  id="customRange1" v-model="waveSpecifications.domain">-->
-                <knob v-model="this.domain" value-color="#3b5998"/>
+                <knob v-model="this.domain" :max="10" :min="0" :step="0.1" value-color="#3b5998"/>
 
 
             </div>
@@ -42,7 +42,7 @@ import Plotly from 'plotly.js-dist';
 import analogGauge from "@/components/panel/waveform/analogGauge.vue";
 import knob  from 'primevue/knob';
 export default {
-    name:"waveForm",
+    name:"newWave",
     components:{
         analogGauge,
         knob,

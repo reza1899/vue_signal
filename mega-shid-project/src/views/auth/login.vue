@@ -44,7 +44,7 @@ export default {
   methods: {
      login(event) {
         event.preventDefault();
-      //await this.axios.post('' ,this.userInfo).then((response) => {
+      // await this.axios.post('' ,this.userInfo).then((response) => {
       //   console.log(response)
       //     alert('ورود با موفقیت انجام شد')
       //     this.$router.push('/')

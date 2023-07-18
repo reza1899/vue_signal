@@ -42,14 +42,14 @@
 </template>
 
 <script>
-
+import axios from 'axios'
 export default {
     name: 'RegisterView',
     data() {
       return {
         userInfo: {
             email: '',
-            password: '',
+            // password: '',
             companyName: '',
             companyNameFa:''
 
@@ -122,14 +122,13 @@ export default {
             // submit form
             console.log(this.userInfo);
         //     API section
-        //           await this.axios.post("", this.userInfo).then(response => {
-        //                 console.log(response)
-        //                 alert("ثبت نام با موفقیت انجام شد")
-        //             }).catch((error) => {
-        //                 console.log(error);
-        //                 alert("ثبت نام با مشکل مواجه شد")
-        //             })
-            this.$router.push('/login');
+                 axios.post("http://192.168.1.10:3000/signup", this.userInfo).then((response) => {
+                    console.log(response)
+
+                 }).catch((error) => {
+                     console.log(error)
+                 })
+            // this.$router.push('/login');
         },
         validateEmail(email) {
             // a simple regex to check email format
