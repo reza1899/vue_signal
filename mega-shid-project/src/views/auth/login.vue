@@ -4,19 +4,23 @@
                 <div>
                     <div class="border-base position-absolute top-50 start-50 translate-middle p-3  w-50" >
                         <form>
+                            <!--          Email                  -->
                                 <p class="text-end mt-2">User Name</p>
-                                <input  v-model="userInfo.userName" type="text" class="form-control" aria-describedby="passwordHelpBlock">
+                                <input  v-model="userInfoLogin.userName" type="text" class="form-control" aria-describedby="passwordHelpBlock">
 
 
-
+                                      <!--                Password              -->
                                 <p class="text-end mt-2">Password</p>
-                                <input  v-model="userInfo.password" type="password" class="form-control" aria-describedby="passwordHelpBlock">
+                                <input  v-model="userInfoLogin.password" type="password" class="form-control" aria-describedby="passwordHelpBlock">
 
-
+                                                <!-- Patch code-->
+                                    <p class="text-end mt-2">code</p>
+                                    <input id="code" v-model="this.userInfoLogin.code" type="password" class="form-control" name="code" required>
+                                    <img class="border border-dark m-3 p-2 w-50" :src="imgSrc" alt="patch code" />
                                 <a class="text-end d-block " href="/register">هنوزثبت نام نکرده اید؟</a>
 
                             <div class="d-flex mt-4 justify-content-between">
-                                <button :disabled="!userInfo.userName || !userInfo.password" @click="login" type="submit" class="btn">ثبت</button>
+                                <button :disabled="!userInfoLogin.userName || !userInfoLogin.password" @click="login" type="submit" class="btn">ثبت</button>
                             </div>
                         </form>
                     </div>
@@ -30,37 +34,54 @@
 </template>
 
 <script>
-
+import axios from 'axios'
+import Cookies from 'js-cookie'
 export default {
     name: 'LoginView',
     data() {
         return {
-            userInfo: {
+            userInfoLogin: {
                 userName: '',
                 password: '',
-            }
+                code:''
+            },
+            imgCode: '',
         }
     },
-  methods: {
-     login(event) {
-        event.preventDefault();
-      // await this.axios.post('' ,this.userInfo).then((response) => {
-      //   console.log(response)
-      //     alert('ورود با موفقیت انجام شد')
-      //     this.$router.push('/')
-      // }).catch((error) => {
-      //   console.log(error)
-      //     alert('ورود با مشکل مواجه شد')
-      // })
-      //   this.$router.push('/')
-         this.$store.state.is_logged_in = true
-        console.log(this.userInfo)
-        if (this.$store.state.role === 'user') {
-            this.$router.push('/dashboard')
-        } else if (this.$store.state.role === 'admin') {
-            this.$router.push('/admin')
-        }
+    created() {
+        axios.get("http://192.168.1.10:3000/signin").then((response) => {
+            console.log(this.imgCode)
+            this.imgCode = response.data
+            console.log(this.imgCode);
+        }).catch((error) => {
+            console.log(error)
+        })
+    },
+    computed: {
+      imgSrc (){
+        return `data:image/jpeg;base64,${this.imgCode}`
+      }
+    },
+    methods: {
 
+       login(event) {
+        event.preventDefault();
+         axios.post('http://192.168.1.10:3000/signin' ,this.userInfoLogin).then((response) => {
+        console.log(response.data)
+          alert('ورود با موفقیت انجام شد')
+             Cookies.set(this.userInfoLogin.userName, response.data)
+             this.$router.push('/')
+              this.$store.state.is_logged_in = true
+             console.log(this.userInfo)
+             if (this.$store.state.role === 'user') {
+                 this.$router.push('/dashboard')
+             } else if (this.$store.state.role === 'admin') {
+                 this.$router.push('/admin')
+             }
+      }).catch((error) => {
+        console.log(error)
+          alert('ورود با مشکل مواجه شد')
+      })
         }
     }
 };
