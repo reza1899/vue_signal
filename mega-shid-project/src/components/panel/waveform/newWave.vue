@@ -1,14 +1,14 @@
 <template>
     <div>
         <div  class="d1  border row m-0">
-            <div class="col-12 col-md-5 p-0">
+            <div class="col-12 col-md-4 p-0">
                 <analogGauge :value="frequency" :max="1" :min="0" :step="0.01"/>
                 <p class="d-inline ms-">frequency:</p>
 <!--                <input type="range" style="width: 100px;"  id="customRange1" v-model="waveSpecifications.frequency">-->
                     <knob v-model="this.frequency" :max="1" :min="0" :step="0.01" value-color="#3b5998"/>
 
             </div>
-            <div class="col-12  col-md-5 p-0">
+            <div class="col-12  col-md-4 p-0">
                 <analogGauge :value="domain" :max="10" :min="0" :step="0.1"/>
                 <p class="d-inline ms-">domain:</p>
 <!--                <input type="range" style="width: 100px"  id="customRange1" v-model="waveSpecifications.domain">-->
@@ -16,7 +16,7 @@
 
 
             </div>
-            <div class="col-12 col-md-2 p-0 ">
+            <div class="col-12 col-md-4 p-0 ">
                 <div style="margin: 20%">
                     <div class="form-floating">
                         <select v-model="waveSpecifications.waveType" class="form-select" id="floatingSelect" aria-label="Floating label select example">
@@ -110,7 +110,6 @@ input[type=range] {
     font-size: 24px;
 }
 .d1{
-    /* From https://css.glass */
     background: rgba(76, 189, 255, 0.29);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
