@@ -35,7 +35,8 @@
 import Plotly from 'plotly.js-dist';
 import analogGauge from "@/components/panel/waveform/analogGauge.vue";
 import knob from 'primevue/knob';
-
+// import axios from 'axios';
+// import Cookies from "js-cookie";
 export default {
     name: "newWave",
     components: {
@@ -54,6 +55,10 @@ export default {
     },
     data() {
         return {
+            messages :[],
+            cookies: {
+                cookie: '',
+            },
             frequency: this.$props.fre,
             domain: this.$props.dom,
             frequencyArr: [],
@@ -70,17 +75,38 @@ export default {
             },
         }
     },
+    created() {
+        // this.cookies.cookie = Cookies.get('reza@gmail.com')
+        // axios.post("http://192.168.1.10:3000/mic1/send", this.cookies).then((response) => {
+        //     console.log("this is response of mic1",response)
+        // }).catch((error) => {
+        //     console.log(error)
+        // })
+        // axios.get("http://192.168.1.10:5000").then((response) => {
+        //     console.log("this is response of port 5000",response)
+        // }).catch((error) => {
+        //     console.log(error)
+        // })
+    },
     mounted() {
+       const eventSource = new EventSource("");
+       eventSource.addEventListener('message', (event) => {
+           const data = JSON.parse(event.data);
+           this.messages.push(data.message)
+       })
         Plotly.newPlot(this.$refs.plot, this.plotData, this.plotLayout);
-        console.log(this.fre);
-        console.log(this.dom);
+        // setInterval(() => {
+        //     this.domainArr.push(this.domainArr.length + 1);
+        //     this.plotData[0].x = this.domainArr; // Update the x values of the first trace
+        //     Plotly.update(this.$refs.plot, this.plotData, this.plotLayout);
+        // }, 1000);
     },
     watch: {
-        domain(newDomain) {
-            this.domainArr.push(newDomain);
-            this.plotData[0].x = this.domainArr; // Update the x values of the first trace
-            Plotly.update(this.$refs.plot, this.plotData, this.plotLayout);
-        },
+        // domain(newDomain) {
+        //     this.domainArr.push(newDomain);
+        //     this.plotData[0].x = this.domainArr; // Update the x values of the first trace
+        //     Plotly.update(this.$refs.plot, this.plotData, this.plotLayout);
+        // },
         frequency(newFrequency) {
             this.frequencyArr.push(newFrequency);
             this.plotData[0].y = this.frequencyArr; // Update the y values of the first trace

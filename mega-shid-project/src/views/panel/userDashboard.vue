@@ -8,10 +8,10 @@
                 </option>
             </select>
             <div class="row row-cols-1 row-cols-md-2 g-4">
-                <div class="col" v-for="cardKey in selectedCards" :key="cardKey">
+                <div class="col" v-for="(card, cardKey) in cardInfo " :key="cardKey">
                     <div class="card">
-                        {{selectedCards.frequency}}
-                        <newWave :fre="0.25" :dom="0.259"  />
+                        {{card.frequency}}
+                        <newWave :fre="card.frequency" :dom="card.amplitude"  />
                     </div>
                 </div>
             </div>
