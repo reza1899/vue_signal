@@ -1,22 +1,17 @@
 <template>
     <div>
-        <div  class="d1  border row m-0">
+        <div class="d1 border row m-0">
             <div class="col-12 col-md-4 p-0">
-                <analogGauge :value="frequency" :max="1" :min="0" :step="0.01"/>
+                <analogGauge :value="this.frequency" :max="1" :min="0" :step="0.01" />
                 <p class="d-inline ms-">frequency:</p>
-<!--                <input type="range" style="width: 100px;"  id="customRange1" v-model="waveSpecifications.frequency">-->
-                    <knob v-model="this.frequency" :max="1" :min="0" :step="0.01" value-color="#3b5998"/>
-
+                <knob v-model="this.frequency" :max="1" :min="0" :step="0.01" value-color="#3b5998" />
             </div>
-            <div class="col-12  col-md-4 p-0">
-                <analogGauge :value="domain" :max="10" :min="0" :step="0.1"/>
+            <div class="col-12 col-md-4 p-0">
+                <analogGauge :value="this.domain" :max="10" :min="0" :step="0.1" />
                 <p class="d-inline ms-">domain:</p>
-<!--                <input type="range" style="width: 100px"  id="customRange1" v-model="waveSpecifications.domain">-->
-                <knob v-model="this.domain" :max="10" :min="0" :step="0.1" value-color="#3b5998"/>
-
-
+                <knob v-model="this.domain" :max="10" :min="0" :step="0.1" value-color="#3b5998" />
             </div>
-            <div class="col-12 col-md-4 p-0 ">
+            <div class="col-12 col-md-4 p-0">
                 <div style="margin: 20%">
                     <div class="form-floating">
                         <select v-model="waveSpecifications.waveType" class="form-select" id="floatingSelect" aria-label="Floating label select example">
@@ -24,57 +19,62 @@
                             <option value="2">Square</option>
                             <option value="3">Triangular</option>
                         </select>
-                        <label for="floatingSelect">select Wave Type</label>
+                        <label for="floatingSelect">Select Wave Type</label>
                     </div>
                     <div class="card flex justify-content-center">
                     </div>
-                    {{this.waveSpecifications.waveType}}
+                    {{ waveSpecifications.waveType }}
                 </div>
             </div>
         </div>
-<!--        <chartApp :frequencyArr="waveSpecifications.frequencyArr" :domain="waveSpecifications.domainArr"/>-->
         <div ref="plot"></div>
-
     </div>
 </template>
+
 <script>
 import Plotly from 'plotly.js-dist';
 import analogGauge from "@/components/panel/waveform/analogGauge.vue";
-import knob  from 'primevue/knob';
+import knob from 'primevue/knob';
+
 export default {
-    name:"newWave",
-    components:{
+    name: "newWave",
+    components: {
         analogGauge,
         knob,
-
-
     },
-
-    data(){
-        return{
-            frequency:0,
-            domain:0,
-            frequencyArr:  [],
-            domainArr:[],
-            plotData: [
-                {
-                    x: [],
-                    y: [],
-                },
-            ],
+    props: {
+        fre: {
+            type: Number,
+            required: true
+        },
+        dom: {
+            type: Number,
+            required: true
+        },
+    },
+    data() {
+        return {
+            frequency: this.$props.fre,
+            domain: this.$props.dom,
+            frequencyArr: [],
+            domainArr: [],
+            plotData: [{
+                x: [],
+                y: [],
+            }],
             plotLayout: {
                 margin: { t: 0 },
             },
-            waveSpecifications:{
-                waveType:null
-
+            waveSpecifications: {
+                waveType: null
             },
         }
     },
     mounted() {
         Plotly.newPlot(this.$refs.plot, this.plotData, this.plotLayout);
+        console.log(this.fre);
+        console.log(this.dom);
     },
-
     watch: {
         domain(newDomain) {
             this.domainArr.push(newDomain);
@@ -82,12 +82,11 @@ export default {
             Plotly.update(this.$refs.plot, this.plotData, this.plotLayout);
         },
         frequency(newFrequency) {
-            this.frequencyArr.push(newFrequency)
+            this.frequencyArr.push(newFrequency);
             this.plotData[0].y = this.frequencyArr; // Update the y values of the first trace
             Plotly.update(this.$refs.plot, this.plotData, this.plotLayout);
         },
     },
-
 }
 </script>
 
@@ -95,6 +94,7 @@ export default {
 input[type=range] {
     direction: rtl;
 }
+
 .gauge {
     width: 100px;
     height: 100px;
@@ -109,7 +109,8 @@ input[type=range] {
 .gauge__value {
     font-size: 24px;
 }
-.d1{
+
+.d1 {
     background: rgba(76, 189, 255, 0.29);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -117,5 +118,4 @@ input[type=range] {
     -webkit-backdrop-filter: blur(7.6px);
     border: 1px solid rgba(76, 189, 255, 0.3);
 }
-
 </style>
